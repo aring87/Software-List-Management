@@ -46,7 +46,7 @@ The demo sheet uses the dropdown values:
 
 ## Notes / Safety
 
-Do not commit real EDRL/Intune exports or any sensitive data to this repo.
+Do not commit real Intune exports or any sensitive data to this repo.
 
 Keep production data outside the repo, or ensure it is ignored by `.gitignore`.
 
