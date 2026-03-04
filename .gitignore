@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.egg-info/
+dist/
+build/
+
+# Virtual envs
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Packaging (PyInstaller)
+*.spec
+
+# If you keep sample data, put it in /samples and remove these lines
