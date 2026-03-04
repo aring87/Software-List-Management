@@ -10,6 +10,12 @@ A small Python GUI tool for searching a software list in Excel and submitting a 
 
 This repo includes **fictional demo data** in `/samples` so you can test the app without using real Intune exports.
 
+## Screenshots
+
+![Main View](docs/screenshots/main_view.png)
+![Request Form](docs/screenshots/request_form.png)
+![Request Queue](docs/screenshots/request_queue.png)
+
 ## What's in this repo
 
 - `excel_search_gui.py` — main GUI application
