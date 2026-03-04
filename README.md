@@ -12,7 +12,7 @@ This repo includes **fictional demo data** in `/samples` so you can test the app
 
 ## Screenshots
 
-#Main View
+### Main View
 ![Main View](docs/screenshots/main_view.png)
 # Request Form
 ![Request Form](docs/screenshots/request_form.png)
