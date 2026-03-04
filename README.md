@@ -2,7 +2,7 @@
 
 A small Python GUI tool for searching a software list in Excel and submitting a software request via a form-style workflow.
 
-This repo includes **fictional demo data** in `/samples` so you can test the app without using real EDRL/Intune exports.
+This repo includes **fictional demo data** in `/samples` so you can test the app without using real Intune exports.
 
 ## What's in this repo
 
@@ -36,7 +36,7 @@ python excel_search_gui.py
 
 Use the fictional example Excel sheet in:
 
-- `samples/Example_EDRL_Software_List.xlsx`
+- `samples/Example_Software_List.xlsx`
 
 The demo sheet uses the dropdown values:
 
