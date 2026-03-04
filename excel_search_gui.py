@@ -1639,7 +1639,7 @@ def add_selected_request_to_all(self):
     # Map Queue -> Main list normalization (per your mapping)
     # Number -> EDRL number (queue stores it as 'EDRL Number')
     mapping = {
-        "EDRL number": rec.get("EDRL Number", ""),
+        "EDRL number": (rec.get("EDRL Number") or rec.get("number") or rec.get("id") or ""),
         "Name": rec.get("Name", ""),
         "Version": rec.get("Version", ""),
         "Type": rec.get("Type", ""),
@@ -1654,7 +1654,7 @@ def add_selected_request_to_all(self):
 
     # Find real columns in the sheet (case-insensitive / flexible), create if missing.
     col_candidates = {
-        "EDRL number": ["edrl number", "edrl#", "edrlnumber"],
+        "EDRL number": ["edrl number", "edrl#", "edrlnumber", "number", "id"],
         "Name": ["name", "product name", "software name"],
         "Version": ["version"],
         "Type": ["type"],
