@@ -1,6 +1,6 @@
 # SoftWare List Management App
 
-A small Python GUI tool for searching an EDRL-style software list in Excel and submitting a software request via a form-style workflow.
+A small Python GUI tool for searching a software list in Excel and submitting a software request via a form-style workflow.
 
 This repo includes **fictional demo data** in `/samples` so you can test the app without using real EDRL/Intune exports.
 
