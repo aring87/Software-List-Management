@@ -276,7 +276,7 @@ class ScrollableFrame(ttk.Frame):
 class EDRLSearchGUI:
     def __init__(self, root: tk.Tk):
         self.root = root
-        self.root.title("EDRL Search")
+        self.root.title("Software Search")
         self.root.geometry("1650x960")
         self.root.minsize(1250, 760)
         self.root.configure(bg=LIGHT_BG)
@@ -596,7 +596,7 @@ class EDRLSearchGUI:
         header.grid(row=0, column=0, sticky="ew")
         header.columnconfigure(0, weight=1)
 
-        ttk.Label(header, text="EDRL Search", font=HEADER_FONT).grid(row=0, column=0, sticky="w")
+        ttk.Label(header, text="Software Search", font=HEADER_FONT).grid(row=0, column=0, sticky="w")
         ttk.Label(header, text="Ctrl+C copy • Ctrl+A select all", font=SUBHEADER_FONT, foreground="#3A5E8C").grid(
             row=1, column=0, sticky="w", pady=(2, 0)
         )
@@ -740,8 +740,36 @@ class EDRLSearchGUI:
         self.status_var = tk.StringVar(value="Load a workbook to begin.")
         ttk.Label(top_status, textvariable=self.status_var, style="Status.TLabel").pack(anchor="w")
 
+        # Results actions (UI-only)
+        results_actions = ttk.Frame(self.results_tab, padding=(2, 0, 2, 8))
+        results_actions.pack(fill="x")
+        results_actions.columnconfigure(0, weight=1)
+
+        self.results_delete_btn = ttk.Button(
+            results_actions,
+            text="Delete Selected",
+            command=self.delete_selected_result,
+            style="Secondary.TButton",
+            state="disabled",
+        )
+        self.results_delete_btn.grid(row=0, column=1, sticky="e")
+
+        self.results_clear_btn = ttk.Button(
+            results_actions,
+            text="Clear Results",
+            command=self.clear_results_table,
+            style="Secondary.TButton",
+            state="disabled",
+        )
+        self.results_clear_btn.grid(row=0, column=2, padx=(10, 0), sticky="e")
+
         self.results_tree = self._make_tree(self.results_tab)
         self._install_copy_shortcuts(self.results_tree)
+
+        # Enable/disable Results actions based on selection/content (UI-only)
+        self.results_tree.bind("<<TreeviewSelect>>", lambda e: self._update_results_buttons_state())
+        self.results_tree.bind("<Delete>", lambda e: self.delete_selected_result())
+        self._update_results_buttons_state()
 
         self.queue_tab = ttk.Frame(self.notebook)
         self.notebook.add(self.queue_tab, text="Request Queue")
@@ -1759,12 +1787,73 @@ def edit_selected_request(self):
 
 
 
+
+def _update_results_buttons_state(self):
+    """UI-only: enable/disable Results buttons based on selection/content."""
+    try:
+        has_rows = bool(self.results_tree.get_children())
+        has_sel = bool(self.results_tree.selection())
+
+        if hasattr(self, "results_clear_btn") and self.results_clear_btn:
+            self.results_clear_btn.configure(state=("normal" if has_rows else "disabled"))
+
+        if hasattr(self, "results_delete_btn") and self.results_delete_btn:
+            self.results_delete_btn.configure(state=("normal" if has_sel else "disabled"))
+    except Exception:
+        pass
+
+def delete_selected_result(self):
+    """UI-only: remove selected row(s) from the Results table (does not modify Excel)."""
+    try:
+        sel = self.results_tree.selection()
+        if not sel:
+            self._update_results_buttons_state()
+            return
+
+        for iid in sel:
+            self.results_tree.delete(iid)
+
+        remaining = len(self.results_tree.get_children())
+        try:
+            self.status_var.set(f"Deleted selected row(s) from Results (UI only). Rows remaining: {remaining}")
+        except Exception:
+            pass
+
+        self._update_results_buttons_state()
+    except Exception as e:
+        try:
+            messagebox.showerror("Delete Failed", f"Could not delete selected row(s).\n\n{e}")
+        except Exception:
+            pass
+
+def clear_results_table(self):
+    """UI-only: clear all rows from the Results table (does not modify Excel)."""
+    try:
+        children = self.results_tree.get_children()
+        if children:
+            self.results_tree.delete(*children)
+
+        try:
+            self.status_var.set("Results cleared (UI only).")
+        except Exception:
+            pass
+
+        self._update_results_buttons_state()
+    except Exception as e:
+        try:
+            messagebox.showerror("Clear Failed", f"Could not clear results.\n\n{e}")
+        except Exception:
+            pass
+
 # --- Bind queue action functions as EDRLSearchGUI methods (in case file indentation changes) ---
 EDRLSearchGUI.add_selected_request_to_all = add_selected_request_to_all
 EDRLSearchGUI.delete_selected_request = delete_selected_request
 EDRLSearchGUI.edit_selected_request = edit_selected_request
 EDRLSearchGUI.export_queue_edrl = export_queue_edrl
 EDRLSearchGUI._update_queue_buttons_state = _update_queue_buttons_state
+EDRLSearchGUI._update_results_buttons_state = _update_results_buttons_state
+EDRLSearchGUI.delete_selected_result = delete_selected_result
+EDRLSearchGUI.clear_results_table = clear_results_table
 def main():
     root = tk.Tk()
     EDRLSearchGUI(root)
