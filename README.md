@@ -46,6 +46,21 @@ python -m pip install -r requirements.txt
 python -m pip install -r requirements.txt
 python excel_search_gui.py
 ```
+## Run the Windows executable (no Python required)
+
+If you just want to run the app (recommended), download the latest release asset:
+
+1. Go to **Releases** and download `dist.zip`
+2. Right-click the zip → **Extract All**
+3. Open the extracted folder and run `Software_Search.exe` (or the .exe name in the folder)
+
+**Important:** Keep all extracted files together in the same folder (this is an `onedir` build).
+
+### Sample data
+The executable includes fictional demo data in:
+- `samples/Example_Software_List.xlsx`
+
+You can replace that file with your own spreadsheet if you keep the same filename, or use the app’s browse/select option (if enabled).
 
 ## Demo Excel file
 
