@@ -31,10 +31,16 @@ def resource_path(relative_path: str) -> str:
     return os.path.join(base_path, relative_path)
 
 
-DEFAULT_WORKBOOK = resource_path("EDRL list v6.xlsx")
+DEFAULT_WORKBOOK = resource_path(os.path.join("samples", "Example_Software_List.xlsx"))
+
+def appdata_path(filename: str) -> str:
+    base = os.environ.get("LOCALAPPDATA") or os.environ.get("APPDATA") or os.path.abspath(".")
+    app_dir = os.path.join(base, "EDRL_Software_Search")
+    os.makedirs(app_dir, exist_ok=True)
+    return os.path.join(app_dir, filename)
 
 # Persist Request Form window geometry between runs
-REQ_FORM_GEOM_FILE = resource_path("request_form_geometry.json")
+REQ_FORM_GEOM_FILE = appdata_path("request_form_geometry.json")
 
 BASE_FONT = ("Segoe UI", 12)
 HEADER_FONT = ("Segoe UI", 18, "bold")

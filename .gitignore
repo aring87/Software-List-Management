@@ -30,4 +30,13 @@ Desktop.ini
 # Packaging (PyInstaller)
 *.spec
 
+# PyInstaller
+/dist/
+/build/
+*.spec
+
+# Local files
+request_form_geometry.json
+*.log
+
 # If you keep sample data, put it in /samples and remove these lines
