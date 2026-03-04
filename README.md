@@ -6,7 +6,7 @@ This repo includes **fictional demo data** in `/samples` so you can test the app
 
 ## What's in this repo
 
-- `edrl_excel_search_gui_v7.py` — main GUI application
+- `excel_search_gui.py` — main GUI application
 - `request_form_geometry.json` — saved UI layout/geometry for the request form
 - `requirements.txt` — Python dependencies
 - `samples/` — demo Excel file(s) with fake/random software entries (safe for Git)
@@ -29,7 +29,7 @@ python -m pip install -r requirements.txt
 
 ```bash
 python -m pip install -r requirements.txt
-python edrl_excel_search_gui_v7.py
+python excel_search_gui.py
 ```
 
 ## Demo Excel file
