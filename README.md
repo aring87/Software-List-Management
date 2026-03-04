@@ -5,7 +5,6 @@
 ![last commit](https://img.shields.io/github/last-commit/aring87/Software-List-Management)
 
 # SoftWare List Management App
-# SoftWare List Management App
 
 A small Python GUI tool for searching a software list in Excel and submitting a software request via a form-style workflow.
 
