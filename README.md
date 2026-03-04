@@ -1,3 +1,10 @@
+![license](https://img.shields.io/badge/license-MIT-green)
+![python](https://img.shields.io/badge/python-3.10%2B-blue)
+![platform](https://img.shields.io/badge/platform-Windows-orange)
+![repo size](https://img.shields.io/github/repo-size/aring87/Software-List-Management)
+![last commit](https://img.shields.io/github/last-commit/aring87/Software-List-Management)
+
+# SoftWare List Management App
 # SoftWare List Management App
 
 A small Python GUI tool for searching a software list in Excel and submitting a software request via a form-style workflow.
