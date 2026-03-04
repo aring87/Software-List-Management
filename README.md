@@ -1,4 +1,4 @@
-# SoftWareListManagementApp
+# SoftWare List Management App
 
 A small Python GUI tool for searching an EDRL-style software list in Excel and submitting a software request via a form-style workflow.
 
